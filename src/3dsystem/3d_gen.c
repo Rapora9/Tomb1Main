@@ -1,8 +1,8 @@
 #include "3dsystem/3d_gen.h"
 
-#include "3dsystem/matrix.h"
 #include "3dsystem/phd_math.h"
 #include "config.h"
+#include "game/matrix.h"
 #include "game/output.h"
 #include "game/screen.h"
 #include "global/vars.h"
@@ -23,7 +23,7 @@ void phd_LookAt(
     viewer.x_rot = angles[1];
     viewer.y_rot = angles[0];
     viewer.z_rot = roll;
-    phd_GenerateW2V(&viewer);
+    Matrix_GenerateW2V(&viewer);
 }
 
 void phd_GetVectorAngles(int32_t x, int32_t y, int32_t z, int16_t *dest)
@@ -61,7 +61,7 @@ int32_t phd_VisibleZClip(PHD_VBUF *vn1, PHD_VBUF *vn2, PHD_VBUF *vn3)
     return a * v2z + b * v2y + c * v2x < 0.0;
 }
 
-void phd_RotateLight(int16_t pitch, int16_t yaw)
+void Matrix_RotateLight(int16_t pitch, int16_t yaw)
 {
     int32_t cp = phd_cos(pitch);
     int32_t sp = phd_sin(pitch);

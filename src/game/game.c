@@ -27,7 +27,7 @@ bool StartGame(int32_t level_num, GAMEFLOW_LEVEL_TYPE level_type)
     g_GameInfo.current_level_type = level_type;
     if (level_type == GFL_SAVED) {
         // reset start info to the defaults so that we do not do
-        // GlobalItemReplace in the inventory initialization routines too early
+        // Item_GlobalReplace in the inventory initialization routines too early
         Savegame_ResetStartInfo(level_num);
     } else {
         InitialiseLevelFlags();

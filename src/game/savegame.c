@@ -101,7 +101,7 @@ static void Savegame_LoadPostProcess(void)
 
             if (obj->collision == Pickup_Collision
                 && item->status == IS_DEACTIVATED) {
-                RemoveDrawnItem(i);
+                Item_RemoveDrawn(i);
             }
         }
 

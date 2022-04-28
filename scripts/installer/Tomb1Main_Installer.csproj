@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <OutputType>WinExe</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>Tomb1Main_Installer</RootNamespace>
+        <AssemblyName>Tomb1Main_Installer</AssemblyName>
+        <OutputPath>bin\$(Configuration)\</OutputPath>
+        <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <LangVersion>9.0</LangVersion>
+    <TargetFramework>net3.5</TargetFramework>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>portable</DebugType>
+        <Optimize>false</Optimize>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <DefineConstants>TRACE</DefineConstants>
+        <Optimize>true</Optimize>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <Reference Include="System" />
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Xaml" />
+        <Reference Include="WindowsBase" />
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
+    </ItemGroup>
+    <ItemGroup>
+        <ApplicationDefinition Include="App.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <SubType>Designer</SubType>
+        </ApplicationDefinition>
+
+        <Compile
+            Include="**/*.cs"
+            Exclude="bin/**/*.cs;obj/**/*.cs;**/*.xaml.cs" />
+        <Compile
+            Include="**/*.xaml.cs"
+            Exclude="bin/**/*.xaml.cs;obj/**/*.xaml.cs">
+            <DependentUpon>%(Filename)</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+
+        <Page
+            Include="**/*.xaml"
+            Exclude="bin/**/*.xaml;obj/**/*.xaml;App.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <SubType>Designer</SubType>
+        </Page>
+    </ItemGroup>
+
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

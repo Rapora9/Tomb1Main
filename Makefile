@@ -40,4 +40,11 @@ test: build test_base
 test_gold: build test_base
 	WINEARCH=win32 MESA_GL_VERSION_OVERRIDE=3.3 wine test/Tomb1Main.exe -gold
 
-.PHONY: debug debugopt release clean lint test_base test_bin test test_gold
+installer:
+	docker build . -f docker/installer/Dockerfile -t rrdash/tomb1main_installer
+	docker run --rm \
+		--user $(HOST_USER_UID):$(HOST_USER_GID) \
+		-v $(CWD):/app/ \
+		rrdash/tomb1main_installer
+
+.PHONY: debug debugopt release clean lint test_base test_bin test test_gold installer
